@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users'
+let g:netrw_dirhist_5='/Users/christiangulliksen'
+let g:netrw_dirhist_4='/Users/christiangulliksen/tmp'
+let g:netrw_dirhist_3='/Users/christiangulliksen'
+let g:netrw_dirhist_2='/usr/local/etc/nginx'
+let g:netrw_dirhist_1='/Users/christiangulliksen/Documents/telenor/fixed/mtw-twe/components/cards'
+let g:netrw_dirhist_0='/Users/christiangulliksen/Documents/telenor/fixed/mtw-twe/components'
+let g:netrw_dirhist_9='/Users/christiangulliksen/Documents/telenor/fixed/mtw-twe'
+let g:netrw_dirhist_8='/Users/christiangulliksen/Documents/telenor/fixed/mtw-twe/components'
+let g:netrw_dirhist_7='/Users/christiangulliksen/Documents/telenor/fixed/mtw-twe'

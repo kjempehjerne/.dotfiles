@@ -5,6 +5,23 @@ local action_state = require("telescope.actions.state")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- you can specify color or cterm_color instead of specifying both of them
+ -- DevIcon will be appended to `name`
+ override = {
+  zsh = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Zsh"
+  }
+ };
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+}
+
 require("telescope").setup({
     defaults = {
         file_sorter = require("telescope.sorters").get_fzy_sorter,
@@ -41,6 +58,15 @@ M.search_dotfiles = function()
         hidden = true,
     })
 end
+
+M.search_schemas = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< SCHEMAS >",
+        hidden = true,
+    })
+end
+
+
 
 local function set_background(content)
     vim.fn.system(
