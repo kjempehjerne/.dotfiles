@@ -75,7 +75,7 @@ yabai -m config layout                       bsp
 yabai -m config top_padding                  0 
 yabai -m config bottom_padding               0
 yabai -m config left_padding                 700
-yabai -m config right_padding                700
+yabai -m config right_padding                0
 yabai -m rule --grid 1:1:0:0:1280:1080
 
 echo "yabai configuration loaded.."
