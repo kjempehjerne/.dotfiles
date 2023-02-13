@@ -1,9 +1,11 @@
 " --- SETTERS
 syntax on
 set noerrorbells
-set colorcolumn=80
-set scrolloff=10
+" set colorcolumn=80
+set signcolumn=yes
+set scrolloff=16
 set number relativenumber
+set nuw=2
 set nu rnu
 set tabstop=4 softtabstop=4
 set shiftwidth=4
@@ -16,7 +18,8 @@ set termguicolors
 set updatetime=50
 set cmdheight=1
 set linespace=50
-set nuw=10
+set cursorline
+" set nuw=10
 
 
 " --- PLUGINS
@@ -31,10 +34,10 @@ Plug 'mbbill/undotree'
 Plug 'chr4/nginx.vim'
 Plug 'posva/vim-vue'
 Plug 'hoob3rt/lualine.nvim'
-Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/gruvbox-material'
 
-Plug 'tjdevries/colorbuddy.vim'
-Plug 'tjdevries/gruvbuddy.nvim'
+" Plug 'tjdevries/colorbuddy.vim'
+" Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " // lsp -- built-in
@@ -46,8 +49,10 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 
 Plug 'numToStr/Comment.nvim'
-Plug 'gruvbox-community/gruvbox'
-Plug 'monsonjeremy/onedark.nvim'
+" Plug 'gruvbox-community/gruvbox'
+" Plug 'monsonjeremy/onedark.nvim'
+" Plug 'navarasu/onedark.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 
 "// telescope requirements...
@@ -58,7 +63,8 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-Plug 'flazz/vim-colorschemes'
+
+" Plug 'lukas-reineke/indent-blankline.nvim'
 
 "// harpoon
 Plug 'ThePrimeagen/harpoon'
@@ -77,6 +83,7 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
+colorscheme tokyonight-night
 let g:netrw_browse_split=2
 let g:netrw_banner=0
 let g:vue_pre_processors = ['scss', 'less']
@@ -96,4 +103,8 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
 nnoremap <leader>o <C-w>o
-
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+vnoremap(J, ":m '>+1<CR>gv=gv")

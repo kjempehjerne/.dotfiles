@@ -1,3 +1,7 @@
+local Remap = require("kjempehjerne.keymap")
+local nnoremap = Remap.nnoremap
+local inoremap = Remap.inoremap
+
 local nvim_lsp = require('lspconfig')
 local cmp = require'cmp'
 vim.lsp.set_log_level("debug")
@@ -43,7 +47,30 @@ vim.lsp.set_log_level("debug")
 
 local function config(_config)
     return vim.tbl_deep_extend("force", {
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        on_attach = function()
+			nnoremap("gd", function() vim.lsp.buf.definition() end)
+			nnoremap("K", function() vim.lsp.buf.hover() end)
+			nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
+			nnoremap("<leader>vd", function() vim.diagnostic.open_float() end)
+			nnoremap("[d", function() vim.diagnostic.goto_next() end)
+			nnoremap("]d", function() vim.diagnostic.goto_prev() end)
+			nnoremap("<leader>vca", function() vim.lsp.buf.code_action() end)
+			nnoremap("<leader>vco", function() vim.lsp.buf.code_action({
+                filter = function(code_action)
+                    if not code_action or not code_action.data then
+                        return false
+                    end
+
+                    local data = code_action.data.id
+                    return string.sub(data, #data - 1, #data) == ":0"
+                end,
+                apply = true
+            }) end)
+			nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
+			nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
+			inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
+		end,
     }, _config or {})
 end
 
@@ -53,7 +80,38 @@ nvim_lsp.tsserver.setup {
 }
 
 -- vue lsp
-nvim_lsp.vuels.setup {}
+-- nvim_lsp.vuels.setup {}
+require'lspconfig'.volar.setup{
+  init_options = {
+    typescript = {
+      -- serverPath = '/path/to/.npm/lib/node_modules/typescript/lib/tsserverlib.js'
+      serverPath = '/Users/kjempehjerne/.nvm/versions/node/v14.20.0/lib/node_modules/typescript/lib/tsserverlibrary.js'
+      -- Alternative location if installed as root:
+      -- serverPath = '/usr/local/lib/node_modules/typescript/lib/tsserverlibrary.js'
+    }
+  }
+}
 
 -- go lsp
-require'lspconfig'.gopls.setup{}
+require("lspconfig").gopls.setup(config({
+	cmd = { "gopls", "serve" },
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+		},
+	},
+}))
+-- require'lspconfig'.gopls.setup(config({
+-- 	cmd = { "gopls", "serve" },
+-- 	settings = {
+-- 		gopls = {
+-- 			analyses = {
+-- 				unusedparams = true,
+-- 			},
+-- 			staticcheck = true,
+-- 		},
+-- 	},
+-- }))

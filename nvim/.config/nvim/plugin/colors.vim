@@ -1,3 +1,7 @@
+
+
+
+
 let g:kjempehjerne_colorscheme = "onedark"
 fun! ColorMyPencils()
     " let g:gruvbox_material_background = "medium"
@@ -19,7 +23,7 @@ fun! ColorMyPencils()
     " highlight ColorColumn ctermbg=0 guibg=grey
     hi SignColumn guibg=none
     hi CursorLineNR guibg=None
-    " highlight Normal guibg=none
+    highlight Normal guibg=none
     " highlight NonText guibg=none
     highlight Normal ctermbg=none guibg=none
     highlight NonText ctermbg=none guibg=none
@@ -31,7 +35,7 @@ fun! ColorMyPencils()
     highlight qfFileName guifg=#aed75f
     hi TelescopeBorder guifg=#5eacd
 endfun
-call ColorMyPencils()
+" call ColorMyPencils()
 
 " Vim with me
 nnoremap <leader>cmp :call ColorMyPencils()<CR>
